@@ -1,0 +1,67 @@
+<script>
+    import { submission } from "./Utils/Submission";
+    import Response from "./Response.svelte";
+    let arrowSrc = "images/arrow.png";
+</script>
+
+<div>
+    <section>
+        <h1><img src={arrowSrc} alt=">">Input<img style="transform:rotate(180deg);" src={arrowSrc} alt="<"></h1>
+        <form on:submit|preventDefault>
+            <label for="time">Time</label>
+            <input id="time" type="number" step="0.01" min="0.00" bind:value={ $submission.time } required>
+            <label for="event">Event</label>
+            <select id="event" bind:value={ $submission.event }>
+                <option value="333">3x3</option>
+                <option value="222">2x2</option>
+                <option value="444">4x4</option>
+                <option value="555">5x5</option>
+                <option value="666">6x6</option>
+                <option value="777">7x7</option>
+                <option value="sq1">Square-1</option>
+                <option value="pyram">Pyraminx</option>
+                <option value="skewb">Skewb</option>
+                <option value="333oh">OH</option>
+                <option value="333bf">3BLD</option>
+                <option value="444bf">4BLD</option>
+                <option value="555bf">5BLD</option>
+                <option value="minx">Megaminx</option>
+                <option value="clock">Clock</option>
+            </select>
+            <label for="type">Type</label>
+            <select id="type" bind:value={ $submission.type }>
+                <option value="singles">Single</option>
+                <option value="averages">Average</option>
+            </select>
+            <label for="submit"></label>
+        </form>
+    </section>
+<hr>
+    <section>
+        <h1><img style="transform:rotate(180deg);"src={arrowSrc} alt="<">Output<img src={arrowSrc} alt=">"></h1>
+        <Response Input={$submission}></Response>
+    </section>
+</div>
+<style>
+    div {
+        margin-left:32%;
+        margin-right:32%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    input, select {
+        text-align: left;
+        border-radius: 15px;
+        padding: 8px;
+        max-width: 150px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    input::placeholder, select::placeholder {
+        text-align: center;
+    }
+    img {
+        height: 17px;
+        vertical-align: middle;
+    }
+</style>
