@@ -8,8 +8,10 @@
     <section>
         <h1><img src={arrowSrc} alt=">">Input<img style="transform:rotate(180deg);" src={arrowSrc} alt="<"></h1>
         <form on:submit|preventDefault>
-            <label for="time">Time</label>
-            <input id="time" type=text bind:value={ $submission.time } required>
+            <input class="search-type" on:change = {$submission.input="3.47"} bind:group={$submission.searchType} type="radio" name="search-type" value="time">Time
+            <input class="search-type" on:change = {$submission.input="1"} bind:group={$submission.searchType} type="radio" name="search-type" value="rank">Rank
+            <label for="time"></label>
+            <input id="time" type=text bind:value={ $submission.input } required>
             <label for="event">Event</label>
             <select id="event" bind:value={ $submission.event }>
                 <option value="333">3x3</option>
@@ -67,7 +69,12 @@
         height: 17px;
         vertical-align: middle;
     }
-
+    .search-type {
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 15px;
+        width: 15px;
+    }
     @media screen and (max-width:620px) {
         div {display: block;}
     }

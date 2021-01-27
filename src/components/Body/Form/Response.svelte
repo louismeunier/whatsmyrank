@@ -1,25 +1,32 @@
 <script>
     export let Input;
     import getWCA from "./Utils/API";
-    import getRankData from "./Utils/RankLogic";
+    import { getTimes, getRanks } from "./Utils/RankLogic";
     import { isValidTime } from "./Utils/timeHandlers";
     import Table from "./Table.svelte";
     import Loading from "../Misc/Loading.svelte";
 </script>
 
 <div>
-    {#if Input.time && isValidTime(Input.time)}
+    {#if Input.input}
         {#await getWCA(Input.event,Input.type)}
             <Loading></Loading>
         {:then data}
-            <Table rankData={ getRankData(Input.time, data.data) }></Table>
+            {#if Input.searchType=="time" && isValidTime(Input.input)}
+                <Table rankData={ getRanks(Input.input, data.data) }></Table>
+            {:else if Input.searchType=="rank" && !isNaN(Input.input) && parseFloat(Input.input)==parseInt(Input.input)}
+                <Table rankData={ getTimes(Input.input, data.data) }></Table>
+            {:else}
+                <h3>
+                    <i style="color:red">❗Invalid {Input.searchType}❗</i>
+                </h3>
+            {/if}
         {:catch error} 
             <h3 style="color:red;">❗Error: contact louismeunier if this persists❗</h3>
         {/await}
     {:else} 
         <h3>
-            <i style="color:red">❗Invalid time❗</i>
-            <p>Time must be in mm:ss.cc <i>OR</i> ss.cc</p>
+            <i style="color:red">❗Invalid  {Input.searchType}❗</i>
         </h3>
     {/if}
 </div>

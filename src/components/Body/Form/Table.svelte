@@ -11,14 +11,14 @@
             {#if i==1}
                 <tr id="current">
                     <td>-</td>
-                    <td>{rankData.rank || ""}</td>
+                    <td>{ rankData.rank || ""}</td>
                     <td>{ rankData.time || "" }</td>
                     <td>-</td>
                 </tr>
             {:else} 
                     <tr>
                         <td></td>
-                        <td>{rankData.rank || ""}</td>
+                        <td>{ rankData.rank || ""}</td>
                         <td>{ rankData.time || "" }</td>
                         <td></td>
                     </tr>
