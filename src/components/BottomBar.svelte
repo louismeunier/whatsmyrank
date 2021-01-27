@@ -8,7 +8,7 @@
 <main>
     <p>
         <img on:click={handleInfo} src={ infoSrc } alt="information">
-        <a href="https://github.com/louismeunier"><img src={ githubSrc } alt="Github"></a>
+        <a target="_blank" href="https://github.com/louismeunier/whatsmyrank"><img src={ githubSrc } alt="Github"></a>
     </p>
 </main>
 <style>
