@@ -8,8 +8,8 @@
 
 <style>
     main {
-        text-align: center;
-        display: block;
+        display: flex;
+        justify-content: center;
         position: fixed;
         margin-top: 300px;
         left: 0;

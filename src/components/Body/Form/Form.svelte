@@ -9,7 +9,7 @@
         <h1><img src={arrowSrc} alt=">">Input<img style="transform:rotate(180deg);" src={arrowSrc} alt="<"></h1>
         <form on:submit|preventDefault>
             <label for="time">Time</label>
-            <input id="time" type="number" step="0.01" min="0.00" bind:value={ $submission.time } required>
+            <input id="time" type=text bind:value={ $submission.time } required>
             <label for="event">Event</label>
             <select id="event" bind:value={ $submission.event }>
                 <option value="333">3x3</option>
@@ -36,7 +36,6 @@
             <label for="submit"></label>
         </form>
     </section>
-<hr>
     <section>
         <h1><img style="transform:rotate(180deg);"src={arrowSrc} alt="<">Output<img src={arrowSrc} alt=">"></h1>
         <Response Input={$submission}></Response>
@@ -44,9 +43,9 @@
 </div>
 <style>
     div {
-        margin-left:32%;
-        margin-right:32%;
         display: flex;
+        min-width: 10%;
+        width: 70%;
         justify-content: space-evenly;
     }
     input, select {
@@ -56,6 +55,10 @@
         max-width: 150px;
         margin-top: 5px;
         margin-bottom: 5px;
+        box-shadow:  0 10px 6px #ccd3df;
+    }
+    label {
+        margin-top: 10px;
     }
     input::placeholder, select::placeholder {
         text-align: center;
@@ -63,5 +66,9 @@
     img {
         height: 17px;
         vertical-align: middle;
+    }
+
+    @media screen and (max-width:620px) {
+        div {display: block;}
     }
 </style>

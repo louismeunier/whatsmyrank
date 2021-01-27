@@ -10,6 +10,6 @@
         width: 100%;
         bottom: 0;
         margin-bottom: 25px;
-        color: slategray;
+        color: rgb(204, 204, 204);
     }
 </style>

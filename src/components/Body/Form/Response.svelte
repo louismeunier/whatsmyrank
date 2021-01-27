@@ -2,26 +2,34 @@
     export let Input;
     import getWCA from "./Utils/API";
     import getRankData from "./Utils/RankLogic";
+    import { isValidTime } from "./Utils/timeHandlers";
     import Table from "./Table.svelte";
+    import Loading from "../Misc/Loading.svelte";
 </script>
 
 <div>
-    {#if Input.time}
+    {#if Input.time && isValidTime(Input.time)}
         {#await getWCA(Input.event,Input.type)}
-            <h2>Loading...</h2>
+            <Loading></Loading>
         {:then data}
             <Table rankData={ getRankData(Input.time, data.data) }></Table>
         {:catch error} 
-            <h2>Oh no! An error occured :/</h2>
+            <h3 style="color:red;">❗Error: contact louismeunier if this persists❗</h3>
         {/await}
     {:else} 
-        <h2>Enter a time to see your rank!</h2>
+        <h3>
+            <i style="color:red">❗Invalid time❗</i>
+            <p>Time must be in mm:ss.cc <i>OR</i> ss.cc</p>
+        </h3>
     {/if}
 </div>
 
 <style>
     div {
-        display: flex;
-        justify-content: center;
+        width: 250px;
+        margin:auto;
+    }
+    h3 {
+        margin-top: 10px;
     }
 </style>

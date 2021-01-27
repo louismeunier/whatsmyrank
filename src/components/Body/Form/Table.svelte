@@ -10,13 +10,18 @@
         {#each rankData as rankData, i}
             {#if i==1}
                 <tr id="current">
-                    <td>--</td>
+                    <td>-</td>
                     <td>{rankData.rank || ""}</td>
-                    <td>{ rankData.time|| "" }</td>
-                    <td>--</td>
+                    <td>{ rankData.time || "" }</td>
+                    <td>-</td>
                 </tr>
             {:else} 
-                    <tr><td></td><td>{rankData.rank || ""}</td><td>{ rankData.time || "" }</td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td>{rankData.rank || ""}</td>
+                        <td>{ rankData.time || "" }</td>
+                        <td></td>
+                    </tr>
             {/if}
         {/each}
     </tbody>
@@ -24,8 +29,11 @@
 
 <style>
     table {
-        margin-top: 50px;
-        width: 200px;
+        margin-top: 10px;
+        width: 250px;
+        border: 2px solid #ccc;
+        border-radius: 15px;
+        box-shadow:  0 10px 6px #ccd3df;
     }
     #current {
         font-weight: 700;

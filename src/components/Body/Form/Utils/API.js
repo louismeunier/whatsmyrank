@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setup } from "axios-cache-adapter"
-const BASE_URL = "https://louismeunier.github.io/wca-stats-helper/rank/";
+const BASE_URL = "https://louismeunier.github.io/wca-stats-helper/rank";
 
 const api = setup({
     baseURL: BASE_URL,
@@ -8,6 +8,7 @@ const api = setup({
         maxAge: 60 * 60 * 24 * 7
     }
 })
+
 const getWCA = async (event, type) => {
     let response;
     await api.get(`/${type}/${event}.json`)
