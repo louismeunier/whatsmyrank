@@ -48,6 +48,8 @@
         display: flex;
         min-width: 10%;
         width: 70%;
+        margin-left: auto;
+        margin-right: auto;
         justify-content: space-evenly;
     }
     input, select {
