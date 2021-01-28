@@ -14,5 +14,7 @@
         animation-iteration-count: infinite;
         margin-top: 50px;
         width: 200px;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
