@@ -77,7 +77,7 @@
         height: 15px;
         width: 15px;
     }
-    @media screen and (max-width:620px) {
+    @media screen and (max-width:700px) {
         div {display: block;}
     }
 </style>

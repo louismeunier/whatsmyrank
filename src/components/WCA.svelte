@@ -3,23 +3,29 @@
     import { formatDate } from "./Body/Form/Utils/timeHandlers";
     import Loading from "./Body/Misc/Loading.svelte";
     import Credits from "./Credits.svelte";
+    let infoSrc = "images/information.png";
+    const toggleCredit = e => {
+        const target = document.getElementById("credits");
+        target.style.display=="none"?document.getElementById("credits").style.display="block":document.getElementById("credits").style.display="none";
+    }
 </script>
 
 <div>
     {#await getLastUpdated()}
         <Loading></Loading>
     {:then data} 
-        <p>
+        <p style="display:none;" id="credits">
             <i>This information is based on competition results owned and maintained by the World Cube Assocation, published <a href="https://worldcubeassociation.org/results" target="_blank">here</a> as of <b>{ formatDate(data.export_date) }.</b></i>
             <br>
-            <i><b>Updated at least once a week, usually around noon on Sunday.</b></i>
             <Credits></Credits>
         </p>
+        <img height=25px src={infoSrc} alt="credits" on:click={toggleCredit}>
+        
     {/await}
 </div>
 
 <style>
-    p { 
+    div { 
         position: fixed;
         width: 100%;
         margin-top: 600px;
@@ -29,6 +35,16 @@
         color: #bdc3c7;
     }
     a {
-        color: #34495e;
+        color: #272b2f;
+    }
+    img {
+        margin-bottom: 5px;
+    }
+    @media screen and (max-width:700px) {
+        div {
+            left: 0;
+            width: auto;
+            margin-left: 10px;
+        }
     }
 </style>
