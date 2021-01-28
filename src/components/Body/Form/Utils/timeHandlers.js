@@ -3,7 +3,7 @@ const isValidTime = val => {
     return (val.match(/^([0-9]|[0-9][0-9]):[0-5][0-9]\.[0-9]([0-9])?$/gm) || val.match(/^(([0-5])?[0-9])?\.[0-9]([0-9])?$/gm));
 }
 
-const convertToS = (minStr) => {
+const convertToS = minStr => {
     const sepOneIndex = minStr.indexOf(":");
     let final;
     if (sepOneIndex!=-1) {
@@ -18,7 +18,7 @@ const convertToS = (minStr) => {
     return final;
 }
 
-const convertToLegible = (time) => {
+const convertToLegible = time => {
     if (time) {
         if (time<60) {
             return time;
@@ -33,4 +33,9 @@ const convertToLegible = (time) => {
     else {return ""}
 }
 
-export { isValidTime, convertToS, convertToLegible };
+const formatDate = raw => {
+    const dateObj = new Date(raw);
+    return dateObj.toDateString();
+}
+
+export { isValidTime, convertToS, convertToLegible, formatDate };
