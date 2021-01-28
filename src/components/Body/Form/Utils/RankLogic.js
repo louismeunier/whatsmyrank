@@ -20,16 +20,16 @@ const getTimes = (rank, results) => {
     rank = parseInt(rank)-1;
     if (rank>results.length) return [{rank:undefined,time:undefined},{rank:rank+1,time:"What are you thinking"},{rank:undefined,time:undefined}]
     var bests = results.map(time=>time.best/100);
-    if (rank===-2) {    
+    if (rank===-2 || rank==results.length-1) {    
         return [
-            {rank:results.length-1,time:convertToLegible(bests[results.length-2])},
-            {rank:results.length,time:convertToLegible(bests[results.length-1])}
+            {rank:results.length-1,time:convertToLegible(bests[results.length-2]),person:results[results.length-2].personId},
+            {rank:results.length,time:convertToLegible(bests[results.length-1]),person:results[results.length-1].personId}
         ]
     }
     return [
-        {rank: rank, time: convertToLegible(bests[rank-1])},
-        {rank: rank+1, time: convertToLegible(bests[rank])},
-        {rank: rank+2, time: convertToLegible(bests[rank+1])}
+        {rank: rank, time: convertToLegible(bests[rank-1]),person:results[rank-1]?.personId},
+        {rank: rank+1, time: convertToLegible(bests[rank]),person:results[rank].personId},
+        {rank: rank+2, time: convertToLegible(bests[rank+1]),person:results[rank+1]?.personId}
     ]
 }
 
@@ -42,9 +42,9 @@ const getRanks = (time, results) => {
     var curIndex = bests.indexOf(time)+0;
     var worseIndex = bests.indexOf(time)+1;
     return  [
-        {rank: betterIndex+1, time: convertToLegible(bests[betterIndex])},
-        {rank: curIndex+1, time: convertToLegible(bests[curIndex])},
-        {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex])}
+        {rank: betterIndex+1, time: convertToLegible(bests[betterIndex]),person:results[betterIndex]?.personId},
+        {rank: curIndex+1, time: convertToLegible(bests[curIndex]),person:"You?"},
+        {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex]),person:results[worseIndex-1].personId}
     ]
 }
 export { getTimes, getRanks };

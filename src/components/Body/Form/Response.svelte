@@ -33,7 +33,7 @@
 
 <style>
     div {
-        width: 250px;
+        width: 300px;
         margin:auto;
     }
     h3 {
