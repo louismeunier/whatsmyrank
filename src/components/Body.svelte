@@ -8,12 +8,12 @@
 
 <style>
     main {
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        margin-top: 300px;
-        left: 0;
-        right: 0;
         width: 100%;
+        position: absolute;
+        left: 50%;
+        margin-top: 300px;
+        transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0); 
+        -webkit-transform: translate(-50% , 0); 
     }
 </style>

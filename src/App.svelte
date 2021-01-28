@@ -1,15 +1,13 @@
 <script>
 	import TopBar from "./components/TopBar.svelte";
 	import Body from "./components/Body.svelte";
-	import BottomBar from "./components/BottomBar.svelte";
-	import Credits from "./components/Credits.svelte";
+	import WCA from "./components/WCA.svelte";
 </script>
 
 <main>
 	<TopBar></TopBar>
 	<Body></Body>
-	<Credits></Credits>
-	<BottomBar></BottomBar>
+	<WCA></WCA>
 </main>
 <style>
 	main {

@@ -1,15 +1,17 @@
-<div style="display:none;" id="icon-credits">
-    <h3><i>Icons by Freepik, Creaticca-Creative-Agency, and Roundicons</i></h3>
-</div>
+<p>
+    <i>Icons by 
+        <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a>,
+        <a href="https://www.flaticon.com/authors/creaticca-creative-agency" target="_blank">Creaticca-Creative-Agency</a>, 
+        and <a href="https://roundicons.com/" target="_blank">Roundicons</a>
+    </i>
+</p>
 
 <style>
-    div {
-        position: fixed;
-        left:0;
-        right:0;
-        width: 100%;
-        bottom: 0;
-        margin-bottom: 25px;
-        color: rgb(204, 204, 204);
+    i {
+       width: 100%;
+       font-size: smaller;
+    }
+    a {
+        color: #34495e;
     }
 </style>
