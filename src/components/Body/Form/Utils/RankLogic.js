@@ -17,10 +17,15 @@ const ordinal_suffix_of = i => {
 }
 
 const getTimes = (rank, results) => {
-    if (rank>7674000000) return [{rank:undefined,time:undefined},{rank:rank,time:"This many people don't live on earth idiot"},{rank:undefined,time:undefined}]
-    if (rank>results.length+1) return [{rank:undefined,time:undefined},{rank:rank,time:"What are you thinking"},{rank:undefined,time:undefined}]
     rank = parseInt(rank)-1;
+    if (rank>results.length) return [{rank:undefined,time:undefined},{rank:rank+1,time:"What are you thinking"},{rank:undefined,time:undefined}]
     var bests = results.map(time=>time.best/100);
+    if (rank===-2) {    
+        return [
+            {rank:results.length-1,time:convertToLegible(bests[results.length-2])},
+            {rank:results.length,time:convertToLegible(bests[results.length-1])}
+        ]
+    }
     return [
         {rank: rank, time: convertToLegible(bests[rank-1])},
         {rank: rank+1, time: convertToLegible(bests[rank])},

@@ -1,6 +1,6 @@
 <script>
     export let Input;
-    import getWCA from "./Utils/API";
+    import { getWCA } from "./Utils/API";
     import { getTimes, getRanks } from "./Utils/RankLogic";
     import { isValidTime } from "./Utils/timeHandlers";
     import Table from "./Table.svelte";
@@ -14,7 +14,7 @@
         {:then data}
             {#if Input.searchType=="time" && isValidTime(Input.input)}
                 <Table rankData={ getRanks(Input.input, data.data) }></Table>
-            {:else if Input.searchType=="rank" && !isNaN(Input.input) && parseFloat(Input.input)==parseInt(Input.input)}
+            {:else if Input.searchType=="rank" && parseFloat(Input.input)==parseInt(Input.input) && (parseInt(Input.input)>0 || parseInt(Input.input)==-1)}
                 <Table rankData={ getTimes(Input.input, data.data) }></Table>
             {:else}
                 <h3>
