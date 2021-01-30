@@ -10,7 +10,7 @@
     main {
         width: 100%;
         position:relative;
-        margin-top: 300px;
+        margin-top: 350px;
         left: 50%;
         top: 0;
         transform: translate(-50%, 0);

@@ -2,7 +2,7 @@
     let iconSrc = "images/favicon.png";
     import Credits from "./Credits.svelte"
     let display = screen.height>750;
-    window.addEventListener("resize", () => display = screen.height>750);
+    window.addEventListener("resize", () => display = screen.height>750 && screen.width>900);
 </script>
 
 {#if display}

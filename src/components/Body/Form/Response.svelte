@@ -32,9 +32,6 @@
 </div>
 
 <style>
-    div {
-        width: 300px;
-    }
     h3 {
         margin-top: 10px;
     }

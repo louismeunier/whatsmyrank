@@ -38,22 +38,25 @@
             <label for="submit"></label>
         </form>
     </section>
-    <section>
+    <section id="response">
         <h1><img style="transform:rotate(180deg);"src={arrowSrc} alt="<">Output<img src={arrowSrc} alt=">"></h1>
         <Response Input={$submission}></Response>
     </section>
 </div>
 <style>
     div {
-        display: inline-grid;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         min-width: 10%;
-        width: 70%;
+        width: 60%;
         margin-left: auto;
         margin-right: auto;
         justify-content: space-evenly;
     }
-    section {
-        display: grid;
+    #response {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
     input, select {
         text-align: left;
@@ -79,5 +82,15 @@
         margin-right: 10px;
         height: 15px;
         width: 15px;
+    }
+    @media screen and (max-height: 750px) {
+        div {
+            display: block;
+        }
+    }
+    @media screen and (max-width: 900px) {
+        div {
+            display: block;
+        }
     }
 </style>
