@@ -9,6 +9,7 @@
 <style>
     main {
         display: absolute;
+        z-index: 60;
         height: auto;
         width: 100%;
         top:0;
