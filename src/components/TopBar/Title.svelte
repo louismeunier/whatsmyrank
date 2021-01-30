@@ -1,8 +1,8 @@
 <script>
     let iconSrc = "images/favicon.png";
     import Credits from "./Credits.svelte"
-    let display = screen.height>750;
-    window.addEventListener("resize", () => display = screen.height>750 && screen.width>900);
+    let display = screen.height>750 && screen.width>850;
+    window.addEventListener("resize", () => display = screen.height>750 && screen.width>850);
 </script>
 
 {#if display}

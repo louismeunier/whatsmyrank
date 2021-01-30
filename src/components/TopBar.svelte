@@ -8,8 +8,8 @@
 
 <style>
     main {
+        display: absolute;
         height: auto;
-        z-index: 50;
         width: 100%;
         top:0;
         left:0;

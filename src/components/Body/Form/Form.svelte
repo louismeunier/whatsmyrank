@@ -46,11 +46,13 @@
 <style>
     div {
         display: grid;
+        height: auto;
         grid-template-columns: repeat(2, 1fr);
         min-width: 10%;
         width: 60%;
         margin-left: auto;
         margin-right: auto;
+        bottom: 0;
         justify-content: space-evenly;
     }
     #response {

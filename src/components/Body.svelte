@@ -8,17 +8,14 @@
 
 <style>
     main {
+        display: absolute;
         width: 100%;
-        position:relative;
         margin-top: 350px;
         left: 50%;
-        top: 0;
-        transform: translate(-50%, 0);
-        -ms-transform: translate(-50%, 0); 
-        -webkit-transform: translate(-50% , 0); 
-        margin-bottom: 150px;
+        margin-left: auto;
+        margin-right: auto;
     }
-    @media screen and (max-height:750px) {
+    @media screen and (max-height:1000px) {
         main {
             margin-top: 100px;
         }
