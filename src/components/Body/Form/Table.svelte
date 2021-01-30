@@ -32,7 +32,7 @@
 <style>
     table {
         margin-top: 10px;
-        min-width: 300px;
+        width: 300px;
         padding: 20px;
         border: 2px solid #ccc;
         border-radius: 15px;

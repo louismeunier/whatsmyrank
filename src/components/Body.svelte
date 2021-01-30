@@ -9,12 +9,18 @@
 <style>
     main {
         width: 100%;
-        position: absolute;
-        left: 50%;
+        position:relative;
         margin-top: 300px;
+        left: 50%;
+        top: 0;
         transform: translate(-50%, 0);
         -ms-transform: translate(-50%, 0); 
         -webkit-transform: translate(-50% , 0); 
         margin-bottom: 150px;
+    }
+    @media screen and (max-height:750px) {
+        main {
+            margin-top: 100px;
+        }
     }
 </style>

@@ -1,4 +1,4 @@
-<h2>Loading</h2>
+<div><h2>Loading</h2></div>
 
 <style>
     @keyframes loading {
@@ -17,4 +17,5 @@
         margin-left: auto;
         margin-right: auto;
     }
+
 </style>

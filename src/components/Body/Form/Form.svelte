@@ -45,12 +45,15 @@
 </div>
 <style>
     div {
-        display: flex;
+        display: inline-grid;
         min-width: 10%;
         width: 70%;
         margin-left: auto;
         margin-right: auto;
         justify-content: space-evenly;
+    }
+    section {
+        display: grid;
     }
     input, select {
         text-align: left;
@@ -76,8 +79,5 @@
         margin-right: 10px;
         height: 15px;
         width: 15px;
-    }
-    @media screen and (max-width:700px) {
-        div {display: block;}
     }
 </style>

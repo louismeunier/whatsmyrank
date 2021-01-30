@@ -43,7 +43,7 @@ const getRanks = (time, results) => {
     var worseIndex = bests.indexOf(time)+1;
     return  [
         {rank: betterIndex+1, time: convertToLegible(bests[betterIndex]),person:results[betterIndex]?.personId},
-        {rank: curIndex+1, time: convertToLegible(bests[curIndex]),person:"You?"},
+        {rank: curIndex+1, time: convertToLegible(bests[curIndex]),person:"You"},
         {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex]),person:results[worseIndex-1].personId}
     ]
 }

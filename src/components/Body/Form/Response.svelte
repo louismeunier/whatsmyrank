@@ -4,7 +4,7 @@
     import { getTimes, getRanks } from "./Utils/RankLogic";
     import { isValidTime } from "./Utils/timeHandlers";
     import Table from "./Table.svelte";
-    import Loading from "../Misc/Loading.svelte";
+    import Loading from "../../Misc/Loading.svelte";
 </script>
 
 <div>
@@ -34,7 +34,6 @@
 <style>
     div {
         width: 300px;
-        margin:auto;
     }
     h3 {
         margin-top: 10px;
