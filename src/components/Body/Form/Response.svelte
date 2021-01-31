@@ -13,9 +13,9 @@
             <Loading></Loading>
         {:then data}
             {#if Input.searchType=="time" && isValidTime(Input.input)}
-                <Table rankData={ getRanks(Input.input, data.data) }></Table>
+                <Table rankData={ getRanks(Input.input, data.data, Input.where) }></Table>
             {:else if Input.searchType=="rank" && parseFloat(Input.input)==parseInt(Input.input) && (parseInt(Input.input)>0 || parseInt(Input.input)==-1)}
-                <Table rankData={ getTimes(Input.input, data.data) }></Table>
+                <Table rankData={ getTimes(Input.input, data.data, Input.where) }></Table>
             {:else}
                 <h3>
                     <i style="color:red">❗Invalid {Input.searchType}❗</i>

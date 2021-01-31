@@ -1,5 +1,6 @@
 import { convertToS, convertToLegible } from "./timeHandlers";
-//calculates rank and returns logical form of it
+import Continents from "../../../../consts/continents";
+//!Need to account for no results in a country, ie you'd be first
 const ordinal_suffix_of = i => {
     //copied from https://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number
     var j = i % 10,
@@ -15,36 +16,47 @@ const ordinal_suffix_of = i => {
     }
     return i + "th";
 }
+const filterByLoc = (where, raw) => {
+    //assume sorted
+    if (where==="world") return raw
+    else if (Continents.map(continent=>continent.id).indexOf(where) !== -1) return raw.filter(best=>best.continent==where)
+    else return raw.filter(best=>best.country===where)
+}
 
-const getTimes = (rank, results) => {
+const getTimes = (rank, results, where) => {
     rank = parseInt(rank)-1;
-    if (rank>results.length) return [{rank:undefined,time:undefined},{rank:rank+1,time:"What are you thinking"},{rank:undefined,time:undefined}]
-    var bests = results.map(time=>time.best/100);
-    if (rank===-2 || rank==results.length-1) {    
+    results.sort((a,b)=>a.best-b.best);
+    var filtered = filterByLoc(where,results);
+    if (filtered.length==0) return [{rank:rank,time:"none",person:"no one"}];
+    const bests = filtered.map(time=>time.best/100);
+    if (rank===-2 || rank+1 >=filtered.length) {    
         return [
-            {rank:results.length-1,time:convertToLegible(bests[results.length-2]),person:results[results.length-2].personId},
-            {rank:results.length,time:convertToLegible(bests[results.length-1]),person:results[results.length-1].personId}
+            {rank:filtered.length-1,time:convertToLegible(bests[filtered.length-2]),person:filtered[filtered.length-2]?.personId},
+            {rank:filtered.length,time:convertToLegible(bests[filtered.length-1]),person:filtered[filtered.length-1]?.personId}
         ]
     }
     return [
-        {rank: rank, time: convertToLegible(bests[rank-1]),person:results[rank-1]?.personId},
-        {rank: rank+1, time: convertToLegible(bests[rank]),person:results[rank].personId},
-        {rank: rank+2, time: convertToLegible(bests[rank+1]),person:results[rank+1]?.personId}
+        {rank: rank, time: convertToLegible(bests[rank-1]),person:filtered[rank-1]?.personId},
+        {rank: rank+1, time: convertToLegible(bests[rank]),person:filtered[rank].personId},
+        {rank: rank+2, time: convertToLegible(bests[rank+1]),person:filtered[rank+1]?.personId}
     ]
 }
 
-const getRanks = (time, results) => {
+const getRanks = (time, results, where) => {
     time = convertToS(time);
-    var bests = results.map(time=>time.best/100);
+    results.sort((a,b)=>a.best-b.best);
+    var filtered = filterByLoc(where,results);
+    if (filtered.length==0) return [{rank:1,time:convertToLegible(time),person:"You"}];
+    var bests = filtered.map(time=>time.best/100);
     bests.push(time);
     bests.sort((a, b) => a-b);
     var betterIndex = bests.indexOf(time)-1;
     var curIndex = bests.indexOf(time)+0;
     var worseIndex = bests.indexOf(time)+1;
     return  [
-        {rank: betterIndex+1, time: convertToLegible(bests[betterIndex]),person:results[betterIndex]?.personId},
+        {rank: betterIndex+1, time: convertToLegible(bests[betterIndex]),person:filtered[betterIndex]?.personId},
         {rank: curIndex+1, time: convertToLegible(bests[curIndex]),person:"You"},
-        {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex]),person:results[worseIndex-1].personId}
+        {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex]),person:filtered[worseIndex-1].personId}
     ]
 }
 export { getTimes, getRanks };

@@ -1,6 +1,8 @@
 <script>
     import { submission } from "./Utils/Submission";
     import Response from "./Response.svelte";
+    import Countries from "../../../consts/countries";
+    import Continents from "../../../consts/continents";
     let arrowSrc = "images/arrow.png";
 </script>
 
@@ -35,7 +37,20 @@
                 <option value="singles">Single</option>
                 <option value="averages">Average</option>
             </select>
-            <label for="submit"></label>
+            <label for="where">Location</label>
+            <select id="where" bind:value={ $submission.where }>
+                <option value="world">World</option>
+                <optgroup label="Continent">
+                    {#each Continents as cr}
+                        <option value={cr.id}>{cr.id.split("_")[1]}</option>
+                    {/each}
+                </optgroup>
+                <optgroup label="Country">
+                    {#each Countries as nr}
+                        <option value={nr.id}>{nr.id}</option>
+                    {/each}
+                </optgroup>
+            </select>
         </form>
     </section>
     <section id="response">
