@@ -23,4 +23,7 @@
       a {
         color: #333;
     }
+    img:hover {
+        cursor: pointer;
+    }
 </style>
