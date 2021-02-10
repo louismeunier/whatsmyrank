@@ -22,7 +22,7 @@
                 </h3>
             {/if}
         {:catch error} 
-            <h3 style="color:red;">❗Error: contact louismeunier if this persists❗</h3>
+            <h3 style="color:red;">❗Error: {error} contact louismeunier if this persists❗</h3>
         {/await}
     {:else} 
         <h3>

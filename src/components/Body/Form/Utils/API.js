@@ -1,31 +1,54 @@
-import axios from "axios";
+import localforage from 'localforage'
+import memoryDriver from 'localforage-memoryStorageDriver'
 import { setup } from "axios-cache-adapter"
+
 const BASE_URL = "https://louismeunier.github.io/wca-stats-helper";
 
-const api = setup({
-    baseURL: BASE_URL,
-    cache: {
-        maxAge: 60 * 60 * 24 * 7
-    }
-})
+async function config () {
+    await localforage.defineDriver(memoryDriver);
 
-const getWCA = async (event, type) => {
-    let response;
-    await api.get(`/rank/${type}/${event}.json`)
-        .then(res => {
-            response = res.data;
-        })
-        .catch(err=>console.error(err));
-    return response;
+    const forageStore = localforage.createInstance({
+        driver: [
+            localforage.INDEXEDDB,
+            localforage.LOCALSTORAGE,
+            memoryDriver._driver
+          ],
+          name: 'whats-my-rank-helper'
+    }) 
+    return setup({
+        baseURL: BASE_URL,
+        cache: {
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          store: forageStore
+        }
+      })
 }
 
-const getLastUpdated = async() => {
-    let response;
-    await api.get("/metadata.json")
-        .then(res => {
-            response = res.data;
+const getWCA = (event, type) => {
+    return new Promise((resolve, reject)=> {
+        config()
+        .then(async api => {
+                await api.get(`/rank/${type}/${event}.json`)
+                .then(res => {
+                    resolve(res.data);
+                })
+                .catch(err=>reject(err));
         })
-        .catch(err=>console.error(err));
-    return response;
+    })
+    
+}
+
+const getLastUpdated = () => {
+    return new Promise((resolve,reject)=> {
+        config()
+        .then(async api => {
+            await api.get("/metadata.json")
+                .then(res => {
+                    resolve(res.data);
+                })
+                .catch(err=>reject(err));
+        })
+    })
+   
 }
 export { getWCA, getLastUpdated };
