@@ -22,7 +22,7 @@
                 </h3>
             {/if}
         {:catch error} 
-            <h3 style="color:red;">❗Error: {error} contact louismeunier if this persists❗</h3>
+            <h3 style="color:red;">❗Error: contact louismeunier if this persists❗</h3>
         {/await}
     {:else} 
         <h3>
@@ -31,8 +31,14 @@
     {/if}
 </div>
 
+<span id="cubing-icon" class="cubing-icon event-{Input.event}"></span>
+
 <style>
     h3 {
         margin-top: 10px;
+    }
+    #cubing-icon {
+        margin-top: 50px;
+        font-size: 80px;
     }
 </style>
