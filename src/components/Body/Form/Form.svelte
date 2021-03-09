@@ -4,6 +4,18 @@
     import Countries from "../../../consts/countries";
     import Continents from "../../../consts/continents";
     let arrowSrc = "images/arrow.png";
+    //logic from thewca/wca-live
+    const toInt = (string) => parseInt(string, 10) || null
+    const reformatInput = (e) => {
+        const input = e.target.value;
+        const number = toInt(input.replace(/\D/g, '')) || 0
+        if (number === 0) {document.getElementById("time").value= ''}
+        else {
+            const str = '00000000' + number.toString().slice(0, 8)
+            const [, hh, mm, ss, cc] = str.match(/(\d\d)(\d\d)(\d\d)(\d\d)$/)
+            document.getElementById("time").value= `${hh}:${mm}:${ss}.${cc}`.replace(/^[0:]*(?!\.)/g, '')
+        }
+    }
 </script>
 
 <div>
@@ -13,7 +25,7 @@
             <input class="search-type" on:change = {$submission.input="3.47"} bind:group={$submission.searchType} type="radio" name="search-type" value="time">Time
             <input class="search-type" on:change = {$submission.input="1"} bind:group={$submission.searchType} type="radio" name="search-type" value="rank">Rank
             <label for="time"></label>
-            <input id="time" type=text bind:value={ $submission.input } required>
+            <input id="time" type=text on:input={ (e) => { $submission.searchType=="time" && reformatInput(e)} } bind:value={ $submission.input } required>
             <label for="event">Event</label>
             <select id="event" bind:value={ $submission.event }>
                 <option value="333">3x3</option>

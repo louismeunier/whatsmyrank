@@ -17,6 +17,7 @@
             {:else if Input.searchType=="rank" && parseFloat(Input.input)==parseInt(Input.input) && (parseInt(Input.input)>0 || parseInt(Input.input)==-1)}
                 <Table rankData={ getTimes(Input.input, data.data, Input.where) }></Table>
             {:else}
+            <!--Can remove this later-->
                 <h3>
                     <i style="color:red">❗Invalid {Input.searchType}❗</i>
                 </h3>

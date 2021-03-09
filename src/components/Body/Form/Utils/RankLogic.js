@@ -56,7 +56,7 @@ const getRanks = (time, results, where) => {
     return  [
         {rank: betterIndex+1, time: convertToLegible(bests[betterIndex]),person:filtered[betterIndex]?.personId},
         {rank: curIndex+1, time: convertToLegible(bests[curIndex]),person:"You"},
-        {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex]),person:filtered[worseIndex-1].personId}
+        {rank: (worseIndex+1>results.length?undefined:worseIndex+1), time: convertToLegible(bests[worseIndex]),person:filtered[worseIndex-1]?.personId}
     ]
 }
 export { getTimes, getRanks };
